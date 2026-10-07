@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ankit Kumar Pandey - Web Developer Presentation</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1230;--panel:#1a1e4a;--ink:#f1f0ff;--mute:#a9a7d6;--accent:#8b6cff;--accent2:#5cc8ff}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;background:var(--bg);color:var(--ink);font-family:'Source Serif 4',Georgia,serif;overflow:hidden}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:6vw 9vw;background:radial-gradient(circle at 85% 10%,#2a2470 0,transparent 45%),var(--bg)}
+.slide.on{display:flex}
+h1,h2{font-family:'Sora',system-ui,sans-serif}
+h1{font-size:clamp(2.2rem,6vw,4.6rem);font-weight:800;line-height:1.05;max-width:14ch}
+h2{font-size:clamp(1.6rem,3.6vw,2.6rem);font-weight:600;margin-bottom:1.6rem;color:var(--accent2)}
+p,li{font-size:clamp(1rem,1.9vw,1.4rem);line-height:1.6;max-width:62ch;color:var(--ink)}
+.sub{color:var(--mute);margin-top:1.4rem;font-size:clamp(1rem,2vw,1.5rem)}
+ul{padding-left:1.2rem}li{margin-bottom:.7rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;max-width:900px}
+.box{background:var(--panel);border-left:4px solid var(--accent);padding:1rem 1.2rem}
+.box b{font-family:'Sora',sans-serif;display:block;margin-bottom:.3rem}
+.box span{color:var(--mute);font-size:1rem}
+.nav{position:fixed;bottom:4vh;right:5vw;display:flex;gap:.6rem;align-items:center;font-family:'Sora',sans-serif;color:var(--mute)}
+button{background:var(--accent);color:#fff;border:0;padding:.6rem 1.1rem;font:600 1rem 'Sora',sans-serif;cursor:pointer;border-radius:6px}
+button:focus-visible{outline:3px solid var(--accent2);outline-offset:2px}
+a{color:var(--accent2)}
+</style>
+</head>
+<body>
+
+<section class="slide on">
+<h1>Ankit Kumar Pandey</h1>
+<p class="sub">Senior Web Designer &amp; Developer at RR Finance Pvt. Ltd. Building fast, clean web applications with ASP.NET and modern front-end tools.</p>
+</section>
+
+<section class="slide">
+<h2>About me</h2>
+<ul>
+<li>4+ years of professional experience in web design and development.</li>
+<li>Working at RR Finance Pvt. Ltd. since January 2022.</li>
+<li>Pursuing an MCA at GLA University (CPI 8.87) alongside full-time work.</li>
+<li>BCA graduate, 2019.</li>
+</ul>
+</section>
+
+<section class="slide">
+<h2>Technical skills</h2>
+<div class="grid">
+<div class="box"><b>Back end</b><span>ASP.NET Web Forms, MVC, Core, C#</span></div>
+<div class="box"><b>Database</b><span>SQL Server, ADO.NET</span></div>
+<div class="box"><b>Front end</b><span>HTML5, CSS3, Bootstrap, JavaScript, jQuery</span></div>
+<div class="box"><b>Tools</b><span>Git, GitHub, Visual Studio, Postman, REST APIs</span></div>
+</div>
+</section>
+
+<section class="slide">
+<h2>Featured project: e-commerce website</h2>
+<ul>
+<li>ASP.NET Web Forms store with a detailed product page and a smooth checkout flow.</li>
+<li>Popup login and address forms so customers never leave the page.</li>
+<li>Cash on delivery availability checked by PIN code.</li>
+</ul>
+</section>
+
+<section class="slide">
+<h2>Design approach</h2>
+<ul>
+<li>Clear layout and readable typography so visitors find what they need fast.</li>
+<li>A consistent dark navy and purple palette with gradient accents.</li>
+<li>Responsive pages that work on desktop and mobile.</li>
+<li>Also experienced in SEO and e-commerce product listing.</li>
+</ul>
+</section>
+
+<section class="slide">
+<h2>Let's connect</h2>
+<p>GitHub: <a href="https://github.com/ankit140819">github.com/ankit140819</a></p>
+<p>Portfolio: <a href="https://ankit140819.github.io/BeautyProductWebsite/ankit_portfolio_v2.html">ankit140819.github.io</a></p>
+<p class="sub">Thank you for your time.</p>
+</section>
+
+<div class="nav"><span id="count"></span><button id="prev" aria-label="Previous slide">Back</button><button id="next" aria-label="Next slide">Next</button></div>
+
+<script>
+const s=[...document.querySelectorAll('.slide')];let i=0;
+function show(n){i=Math.max(0,Math.min(s.length-1,n));s.forEach((e,k)=>e.classList.toggle('on',k===i));document.getElementById('count').textContent=(i+1)+' / '+s.length}
+document.getElementById('next').onclick=()=>show(i+1);
+document.getElementById('prev').onclick=()=>show(i-1);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')show(i+1);if(e.key==='ArrowLeft')show(i-1)});
+show(0);
+</script>
+</body>
+</html>
