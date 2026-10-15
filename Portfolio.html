@@ -166,6 +166,8 @@ footer{text-align:center;padding:34px 0 44px;color:var(--muted);font-size:.9rem}
   section{padding:80px 0}
   .hero,.about,.craft,.skills,.contact{grid-template-columns:1fr;gap:44px}
   .craft{margin-top:80px}.stack{height:440px;margin-bottom:34px}
+  .cloud{display:flex;flex-wrap:wrap;gap:14px;padding:24px 18px;height:auto;align-content:flex-start}
+  .cloud b{position:static}
   .nm{display:block;flex:1;text-align:center;font:700 1.05rem Outfit,Inter,sans-serif;color:var(--ink);white-space:nowrap;padding:0 8px}
   nav{top:0;width:100%;background:rgba(255,255,255,.97);border-radius:0 0 26px 26px;padding:8px 16px 8px 12px}
   nav ul{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;background:#fff;border-radius:22px;padding:10px;box-shadow:var(--shadow)}
@@ -263,12 +265,12 @@ footer{text-align:center;padding:34px 0 44px;color:var(--muted);font-size:.9rem}
   <div>
     <span class="tag">Skills &amp; Expertise</span>
     <h2>My technical <span class="grad">toolkit</span></h2>
-    <p>The stack I use every day to ship and maintain a live finance platform, plus the front-end frameworks I'm building on.</p>
+    <p>The stack I use every day to ship and maintain a live finance platform, plus the tools I use to build and test it.</p>
     <div class="groups">
-      <div><strong>Back end:</strong> ASP.NET Web Forms, C#, ADO.NET, Web API, Node.js</div>
-      <div><strong>Front end:</strong> HTML5, CSS3, Bootstrap, JavaScript, jQuery, TypeScript, React, Angular</div>
+      <div><strong>Back end:</strong> ASP.NET Web Forms, C#, ADO.NET, Web API</div>
+      <div><strong>Front end:</strong> HTML5, CSS3, Bootstrap, JavaScript, jQuery</div>
       <div><strong>Data:</strong> SQL Server, DBMS, query optimization</div>
-      <div><strong>Also:</strong> SEO, REST API integration, e-commerce catalog management, debugging</div>
+      <div><strong>Also:</strong> SEO, REST API integration, Postman, e-commerce product listing, catalog management, debugging</div>
     </div>
   </div>
 </div></section>
@@ -343,7 +345,7 @@ function reset(){clearInterval(timer);timer=setInterval(()=>go((cu+1)%sv.length)
 go(0);reset();
 
 // skill cloud
-const sk=[["C#","#6d28d9"],["ASP.NET","#2563eb"],["SQL Server","#dc2626"],["HTML5","#ea580c"],["CSS3","#0284c7"],["Bootstrap","#7c3aed"],["JavaScript","#ca8a04"],["jQuery","#0369a1"],["ADO.NET","#0f766e"],["Web API","#4f46e5"],["TypeScript","#2563eb"],["React","#0891b2"],["Angular","#be123c"],["Node.js","#15803d"],["SEO","#c2410c"]];
+const sk=[["C#","#6d28d9"],["ASP.NET","#2563eb"],["SQL Server","#dc2626"],["HTML5","#ea580c"],["CSS3","#0284c7"],["Bootstrap","#7c3aed"],["JavaScript","#ca8a04"],["jQuery","#0369a1"],["ADO.NET","#0f766e"],["Web API","#4f46e5"],["SEO","#c2410c"],["Postman","#ea580c"],["Web Forms","#1d4ed8"],["E-Commerce Listing","#9333ea"]];
 const cl=document.getElementById('cloud');
 sk.forEach((s,i)=>{const b=document.createElement('b');b.textContent=s[0];b.style.setProperty('--c',s[1]);
   b.style.left=(4+(i%4)*24+(Math.floor(i/4)%2)*7)+'%';b.style.top=(4+Math.floor(i/4)*23)+'%';b.style.setProperty('--d',(2.4+(i%5)*.5)+'s');b.style.animationDelay=(-i*.3)+'s';cl.appendChild(b)});
