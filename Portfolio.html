@@ -131,10 +131,8 @@ nav.sc .nm{opacity:1;transform:none}
 .now{position:absolute;right:22px;top:22px;background:#dcfce7;color:#15803d;font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:999px}
 
 /* projects marquee */
-.marq{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
-.track{display:flex;gap:22px;width:max-content;animation:slide 36s linear infinite}
-.marq:hover .track,.marq:focus-within .track{animation-play-state:paused}
-@keyframes slide{to{transform:translateX(calc(-50% - 11px))}}
+.marq{overflow:hidden}
+.track{display:flex;flex-wrap:wrap;justify-content:center;gap:22px;max-width:1180px;margin:0 auto;padding:6px 28px 26px}
 .pc{width:290px;flex:none;background:#fff;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
 .pc .shot{height:150px;display:grid;place-items:center;color:#fff;font:700 1.15rem Outfit;text-align:center;padding:14px;background:linear-gradient(135deg,var(--a),var(--b))}
 .pc .in{padding:18px 20px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
@@ -353,7 +351,7 @@ sk.forEach((s,i)=>{const b=document.createElement('b');b.textContent=s[0];b.styl
 // projects (replace href with the live URLs)
 const pr=[["23uforever","Live website project.","Web","#3140e6","#6d4de0","https://23uforever.com/"],["Pre-IPO Unlisted Shares","Landing page for unlisted shares.","ASP.NET · RR Finance","#0f766e","#2563eb","https://www.rrfinance.com/unlisted-shares/Pre-IPO-Unlisted-Shares.aspx"],["National Pension System","NPS product landing page.","ASP.NET · RR Finance","#7c3aed","#db2777","https://www.rrfinance.com/OurProducts/National-Pension-System-Landing-Page.aspx"],["PMS Fund","Portfolio management services product page.","ASP.NET · RR Finance","#ea580c","#be123c","https://www.rrfinance.com/OurProducts/PMSFund/Default.aspx"],["rrfinance.com","Live corporate finance platform built with ASP.NET Web Forms, C# and SQL Server.","Production site","#0e7490","#4338ca","https://rrfinance.com/"]];
 const tr=document.getElementById('track');
-[...pr,...pr].forEach(p=>{tr.insertAdjacentHTML('beforeend',`<article class="pc"><div class="shot" style="--a:${p[3]};--b:${p[4]}">${p[0]}</div><div class="in"><em>${p[2]}</em><h3>${p[0]}</h3><p>${p[1]}</p><a href="${p[5]}" target="_blank" rel="noopener">Live project ↗</a></div></article>`)});
+pr.forEach(p=>{tr.insertAdjacentHTML('beforeend',`<article class="pc"><div class="shot" style="--a:${p[3]};--b:${p[4]}">${p[0]}</div><div class="in"><em>${p[2]}</em><h3>${p[0]}</h3><p>${p[1]}</p><a href="${p[5]}" target="_blank" rel="noopener">Live project ↗</a></div></article>`)});
 
 // show name in nav after 200px scroll
 const navEl=document.querySelector('nav');
