@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DevStack – Build. Learn. Code. Grow.</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f7f8fc;--sf:#fff;--tx:#0e1328;--mu:#59627d;--ln:#e3e7f2;--ac:#4f46e5;--ac2:#7c3aed;--soft:#eceafe;--hd:#f7f8fcdd;--cb:#0b1021;--ct:#dfe5ff;--sh:0 10px 30px #1b244a14}
+:root:not([data-theme="light"]){color-scheme:light dark}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070a16;--sf:#0f1428;--tx:#eaeefc;--mu:#97a0bf;--ln:#212947;--ac:#818cf8;--ac2:#a78bfa;--soft:#1b1f48;--hd:#070a16dd;--cb:#050813;--sh:0 10px 30px #0008}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#070a16;--sf:#0f1428;--tx:#eaeefc;--mu:#97a0bf;--ln:#212947;--ac:#818cf8;--ac2:#a78bfa;--soft:#1b1f48;--hd:#070a16dd;--cb:#050813;--sh:0 10px 30px #0008}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--hd);z-index:60;backdrop-filter:blur(10px)}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:pointer}
+.w{max-width:1160px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--hd);backdrop-filter:blur(12px);border-bottom:1px solid var(--ln)}
+.nav{display:flex;align-items:center;gap:18px;height:64px}
+.brand{font-weight:800;font-size:1.2rem;display:flex;gap:8px;align-items:center}
+.logo{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;display:grid;place-items:center;font-size:.8rem}
+.links{display:flex;gap:4px;margin-left:12px}.links a{padding:6px 11px;border-radius:8px;color:var(--mu);font-size:.93rem;font-weight:500}.links a:hover{background:var(--soft);color:var(--ac)}
+.sp{flex:1}
+.ib{width:38px;height:38px;border-radius:10px;border:1px solid var(--ln);background:var(--sf);display:grid;place-items:center}
+.ib:hover{border-color:var(--ac)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:11px;border:1px solid var(--ln);background:var(--sf);font-weight:600;font-size:.93rem;transition:.2s}
+.btn:hover{transform:translateY(-2px);border-color:var(--ac)}
+.pri{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;border:0;box-shadow:0 8px 22px #4f46e555}
+.sm{padding:7px 14px;font-size:.88rem}
+#menu{display:none}
+@media(max-width:980px){.links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;background:var(--sf);padding:10px 20px;border-bottom:1px solid var(--ln)}.links.open{display:flex}#menu{display:grid}.hm{display:none}}
+section{padding:72px 0}
+.eyebrow{color:var(--ac);font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
+h2.t{font-size:clamp(1.6rem,4vw,2.3rem);margin:6px 0 8px;line-height:1.2}
+.sub{color:var(--mu);max-width:640px;margin:0 0 30px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:16px;padding:20px;box-shadow:var(--sh);transition:.25s}
+.card:hover{transform:translateY(-4px);border-color:var(--ac)}
+.hero{padding:70px 0 40px;background:radial-gradient(700px 320px at 80% 0,#7c3aed26,transparent),radial-gradient(600px 300px at 0 10%,#4f46e526,transparent)}
+.hg{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
+@media(max-width:900px){.hg{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(2.2rem,6vw,3.8rem);line-height:1.08;margin:12px 0}
+.grad{background:linear-gradient(135deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--mu);font-size:1.1rem;max-width:520px}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.edit{position:relative;background:var(--cb);border:1px solid var(--ln);border-radius:16px;box-shadow:0 20px 60px #4f46e540;overflow:hidden;color:var(--ct)}
+.eh{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid #ffffff18;font-size:.8rem;color:#98a2c8}
+.dot{width:10px;height:10px;border-radius:50%;background:#ff5f57}.dot:nth-child(2){background:#febc2e}.dot:nth-child(3){background:#28c840}
+.copy{margin-left:auto;background:#ffffff14;border:1px solid #ffffff2a;color:#dfe5ff;border-radius:7px;padding:2px 10px;font-size:.75rem}
+pre{margin:0;padding:16px;overflow-x:auto;font:13.5px/1.65 ui-monospace,Menlo,Consolas,monospace;color:var(--ct)}
+.k{color:#c4a7ff}.s{color:#8ee6a8}.c{color:#6c7aa6;font-style:italic}.y{color:#7dd3fc}
+.fl{position:absolute;background:var(--sf);color:var(--tx);border:1px solid var(--ln);border-radius:99px;padding:3px 11px;font-size:.75rem;font-weight:700;box-shadow:var(--sh);animation:fy 5s ease-in-out infinite}
+@keyframes fy{50%{transform:translateY(-8px)}}
+.hw{position:relative;padding:16px}
+.ti{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;display:grid;place-items:center;font-weight:800;font-size:.82rem;margin-bottom:12px}
+.card h3{margin:0 0 4px;font-size:1.05rem}.card p{margin:0 0 12px;color:var(--mu);font-size:.92rem}
+.lk{color:var(--ac);font-weight:600;font-size:.88rem;background:none;border:0;padding:0}
+.dash{display:grid;grid-template-columns:1.3fr 1fr;gap:16px;margin-bottom:26px}
+@media(max-width:800px){.dash{grid-template-columns:1fr}}
+.pb{height:10px;background:var(--ln);border-radius:99px;overflow:hidden;margin:10px 0}.pb i{display:block;height:100%;background:linear-gradient(90deg,var(--ac),var(--ac2));transition:width .4s}
+.stats{display:flex;gap:22px;flex-wrap:wrap;margin:12px 0}.stats b{display:block;font-size:1.4rem}.stats span{color:var(--mu);font-size:.82rem}
+.chip{display:inline-block;padding:2px 10px;border-radius:99px;font-size:.74rem;font-weight:600;background:var(--soft);color:var(--ac);margin-right:6px}
+.rm{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.rm .card{padding:16px;position:relative}.num{font:800 1.6rem ui-monospace,monospace;color:var(--ac);opacity:.5}
+.rm .card.done{border-color:#22c55e66}
+.rm .meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:8px}
+.pill{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.pill button{border:1px solid var(--ln);background:var(--sf);border-radius:99px;padding:6px 14px;font-size:.85rem;font-weight:600}
+.pill button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.qa{margin-bottom:10px}.qa button{all:unset;cursor:pointer;display:block;width:100%;font-weight:600}.qa .a{display:none;color:var(--mu);margin-top:8px;font-size:.94rem}.qa.open .a{display:block}
+.inp{width:100%;padding:12px 16px;border-radius:12px;border:1px solid var(--ln);background:var(--sf);color:var(--tx);font:inherit;margin-bottom:14px}
+.banner{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;border-radius:16px;padding:20px;margin-bottom:18px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.banner .btn{color:var(--tx)}
+.cta{background:linear-gradient(135deg,#1e1b4b,#4f46e5 60%,#7c3aed);color:#fff;border-radius:24px;padding:54px 24px;text-align:center}
+.cta p{opacity:.85;max-width:520px;margin:0 auto 22px}.cta .btn{color:#1e1b4b;border:0}
+footer{border-top:1px solid var(--ln);padding:44px 0 28px;margin-top:40px;color:var(--mu);font-size:.92rem}
+.fg{display:grid;gap:26px;grid-template-columns:1.5fr repeat(3,1fr)}@media(max-width:800px){.fg{grid-template-columns:1fr 1fr}}
+.fg h4{color:var(--tx);margin:0 0 10px}.fg a{display:block;padding:2px 0}.fg a:hover{color:var(--ac)}
+.copyr{margin-top:28px;padding-top:18px;border-top:1px solid var(--ln);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+/* lesson */
+#lesson{display:none;padding:30px 0 20px}
+.lg{display:grid;grid-template-columns:220px minmax(0,1fr) 190px;gap:28px}
+@media(max-width:1000px){.lg{grid-template-columns:1fr}.side,.toc{display:none}}
+.side,.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 84px);align-self:start;font-size:.9rem}
+.side h5,.toc h5{margin:0 0 8px;color:var(--mu);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}
+.side button,.toc button{all:unset;cursor:pointer;display:block;width:100%;padding:6px 10px;border-radius:8px;color:var(--mu)}
+.side button:hover,.toc button:hover{background:var(--soft);color:var(--ac)}.side button.on{background:var(--soft);color:var(--ac);font-weight:700}
+.art h1{margin:6px 0 4px;font-size:2rem}.art h3{margin:30px 0 8px;font-size:1.2rem}.art p{margin:6px 0;color:var(--mu)}.art ul{color:var(--mu);padding-left:20px}
+.art .edit{margin:12px 0;box-shadow:none}
+.pn{display:flex;justify-content:space-between;gap:10px;margin-top:34px;flex-wrap:wrap}
+.crumb{color:var(--mu);font-size:.88rem;border:0;background:none;padding:0}.crumb:hover{color:var(--ac)}
+</style>
+</head>
+<body>
+<header><div class="w nav">
+  <a href="#" class="brand" data-go="top"><span class="logo">&lt;/&gt;</span>DevStack</a>
+  <nav class="links" id="links">
+    <a href="#" data-go="top">Home</a><a href="#" data-go="learn">Learn</a><a href="#" data-go="projects">Projects</a><a href="#" data-go="interview">Interview Prep</a><a href="#" data-go="examples">Code Examples</a><a href="#" data-go="resources">Resources</a><a href="#" data-go="about">About</a><a href="#" data-go="contact">Contact</a>
+  </nav>
+  <span class="sp"></span>
+  <button class="ib" id="srch" title="Search code examples" aria-label="Search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+  <button class="ib" id="theme" title="Toggle theme" aria-label="Toggle theme"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+  <a href="#" class="btn sm hm">Login</a><a href="#" class="btn pri sm hm" data-go="learn">Get Started</a>
+  <button class="ib" id="menu" aria-label="Menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</div></header>
+
+<main id="home">
+<div class="hero" id="top"><div class="w hg">
+  <div>
+    <span class="chip">New · ASP.NET Core track</span>
+    <h1>Build. Learn. <span class="grad">Code. Grow.</span></h1>
+    <p>Learn modern web development through practical examples, real-world projects, interview preparation, and step-by-step development guides.</p>
+    <div class="row"><a href="#" class="btn pri" data-go="learn">Start Learning →</a><a href="#" class="btn" data-go="projects">Explore Projects</a></div>
+  </div>
+  <div class="hw">
+    <div class="edit"><div class="eh"><i class="dot"></i><i class="dot"></i><i class="dot"></i>&nbsp;Program.cs</div>
+<pre id="heroCode"></pre></div>
+    <span class="fl" style="top:-4px;left:6px">.NET</span><span class="fl" style="top:30px;right:-4px;animation-delay:.6s">C#</span><span class="fl" style="top:46%;left:-10px;animation-delay:1.2s">ASP.NET Core</span><span class="fl" style="bottom:50px;right:6px;animation-delay:1.8s">SQL Server</span><span class="fl" style="bottom:-6px;left:40px;animation-delay:2.4s">REST API</span><span class="fl" style="bottom:4px;right:110px;animation-delay:3s">JavaScript</span>
+  </div>
+</div></div>
+
+<section><div class="w"><span class="eyebrow">Stack</span><h2 class="t">Technologies You Can Explore</h2><p class="sub">Core tools of a modern .NET web developer, each with focused guides and examples.</p><div class="grid" id="tech"></div></div></section>
+
+<section id="learn"><div class="w"><span class="eyebrow">Learning track</span><h2 class="t">Learn ASP.NET Core</h2><p class="sub">Master ASP.NET Core from fundamentals to real-world application development.</p>
+  <div class="dash">
+    <div class="card"><b>ASP.NET Core Progress: <span id="pp">0</span>%</b><div class="pb"><i id="pbar"></i></div>
+      <div class="stats"><div><b id="sc">0</b><span>Completed Topics</span></div><div><b id="sr">0</b><span>Remaining Topics</span></div><div><b>2</b><span>Projects Completed</span></div></div>
+      <button class="btn pri sm" id="cont">Continue Learning</button></div>
+    <div class="card"><b>Recently viewed</b><div id="recent" style="margin:8px 0;color:var(--mu);font-size:.9rem">Open a topic to see it here.</div><b>Saved topics</b><div id="saved" style="margin-top:8px;color:var(--mu);font-size:.9rem">Bookmark topics from a lesson page.</div></div>
+  </div>
+  <div class="rm" id="rm"></div></div></section>
+
+<section id="projects"><div class="w"><span class="eyebrow">Portfolio-ready</span><h2 class="t">Build Real-World Projects</h2><p class="sub">Hands-on builds you can show in a developer portfolio.</p><div class="grid" id="proj"></div></div></section>
+
+<section id="interview"><div class="w"><span class="eyebrow">Career</span><h2 class="t">Prepare for Your Next Developer Interview</h2><p class="sub">Practical questions with concise answers, filtered by topic and experience level.</p>
+  <div class="banner"><div><b>ASP.NET Developer – 4+ Years Experience</b><div style="opacity:.9;font-size:.92rem">Scenario-based questions for experienced candidates.</div></div><button class="btn sm" id="exp">View questions</button></div>
+  <div class="pill" id="cats"></div><div class="pill" id="lvls"></div><div id="qas"></div></div></section>
+
+<section id="examples"><div class="w"><span class="eyebrow">Snippets</span><h2 class="t">Code Examples</h2><p class="sub">Search and copy ready-to-use snippets.</p>
+  <input class="inp" id="q" placeholder="Search examples, e.g. API, stored procedure, session…"><div class="grid" id="ex" style="grid-template-columns:repeat(auto-fill,minmax(320px,1fr))"></div></div></section>
+
+<section id="resources"><div class="w" id="about"><span class="eyebrow">Why DevStack</span><h2 class="t">Built for working developers</h2><p class="sub">A resource platform, not a classroom.</p><div class="grid" id="why"></div></div></section>
+
+<div class="w" id="contact"><div class="cta"><h2 style="margin:0 0 10px;font-size:clamp(1.5rem,4vw,2.2rem)">Ready to Become a Better .NET Developer?</h2><p>Start learning, build real projects, practice APIs, and prepare for developer interviews.</p><a href="#" class="btn" data-go="learn">Start Learning Now</a></div></div>
+</main>
+
+<main id="lesson"><div class="w">
+  <button class="crumb" id="back">← Back to roadmap</button>
+  <div class="lg" style="margin-top:14px">
+    <aside class="side"><h5>ASP.NET Core</h5><div id="sb"></div></aside>
+    <article class="art" id="art"></article>
+    <aside class="toc"><h5>On This Page</h5><div id="toc"></div></aside>
+  </div>
+</div></main>
+
+<footer><div class="w"><div class="fg">
+  <div><div class="brand"><span class="logo">&lt;/&gt;</span>DevStack</div><p style="margin-top:10px">A developer platform for learning, building and interview preparation.</p></div>
+  <div><h4>Quick Links</h4><a href="#" data-go="top">Home</a><a href="#" data-go="learn">Learn</a><a href="#" data-go="projects">Projects</a><a href="#" data-go="interview">Interview Prep</a><a href="#" data-go="resources">Resources</a></div>
+  <div><h4>Technologies</h4><a href="#">ASP.NET Core</a><a href="#">C#</a><a href="#">Web API</a><a href="#">SQL Server</a><a href="#">JavaScript</a></div>
+  <div><h4>Resources</h4><a href="#">Documentation</a><a href="#" data-go="examples">Code Examples</a><a href="#" data-go="learn">Roadmap</a><a href="#" data-go="interview">Interview Questions</a></div>
+</div><div class="copyr"><span>© 2026 DevStack. All rights reserved.</span><span><a href="#" style="display:inline">GitHub</a> · <a href="#" style="display:inline">LinkedIn</a> · <a href="#" style="display:inline">YouTube</a></span></div></div></footer>
+
+<script>
+var $=function(s){return document.querySelector(s)};
+function esc(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function hl(c){return esc(c).replace(/(\/\/.*$)|("(?:[^"\\]|\\.)*")|\b(var|new|using|return|public|class|async|await|if|else|void|string|int|private|readonly|namespace|static)\b|\b([A-Z][A-Za-z0-9]*)(?=[(&\s.])/gm,function(m,a,b,c,d){return a?'<span class="c">'+a+'</span>':b?'<span class="s">'+b+'</span>':c?'<span class="k">'+c+'</span>':'<span class="y">'+d+'</span>'})}
+function cb(file,lang,code){return '<div class="edit"><div class="eh"><i class="dot"></i><i class="dot"></i><i class="dot"></i>&nbsp;'+file+' · '+lang+'<button class="copy" data-c="'+encodeURIComponent(code)+'">Copy Code</button></div><pre>'+hl(code)+'</pre></div>'}
+var hero='var builder = WebApplication.CreateBuilder(args);\n\nbuilder.Services.AddControllers();\n\nvar app = builder.Build();\n\napp.MapControllers();\n\napp.Run();';
+$("#heroCode").innerHTML=hl(hero);
+
+var T=[["ASP.NET Core","AS","Cross-platform framework for web apps and APIs."],["C#","C#","Modern, typed language of the .NET ecosystem."],[".NET","NET","Runtime and libraries behind every .NET app."],["Web API","API","Build RESTful services consumed by any client."],["SQL Server","SQL","Relational database, queries and procedures."],["ADO.NET","AD","Direct, fast data access with SqlConnection."],["JavaScript","JS","Interactive front-end behaviour and fetch calls."],["HTML & CSS","H5","Semantic markup and responsive styling."],["Bootstrap","BS","Responsive layout and UI components."],["Git & GitHub","GIT","Version control and collaboration workflow."]];
+$("#tech").innerHTML=T.map(function(t){return '<div class="card"><div class="ti">'+t[1]+'</div><h3>'+t[0]+'</h3><p>'+t[2]+'</p><button class="lk" data-go="learn">Explore →</button></div>'}).join("");
+
+var P=[["Introduction","What ASP.NET Core is and why teams choose it.","Beginner","20 min"],["Project Structure","Understand every file in a new project.","Beginner","25 min"],["Program.cs","The entry point that configures the app.","Beginner","30 min"],["Middleware","The request pipeline, step by step.","Intermediate","40 min"],["Routing","Map URLs to endpoints and actions.","Beginner","35 min"],["Dependency Injection","Register and consume services cleanly.","Intermediate","45 min"],["Controllers","Handle requests and return results.","Beginner","35 min"],["Models","Represent and validate your data.","Beginner","25 min"],["Views","Render HTML with Razor.","Beginner","35 min"],["MVC Architecture","How Model, View and Controller fit together.","Beginner","30 min"],["Configuration","appsettings, environments and secrets.","Intermediate","30 min"],["ADO.NET","Connect to and query a database.","Intermediate","50 min"],["SQL Server","Tables, joins and indexes for developers.","Intermediate","60 min"],["Stored Procedures","Move data logic into the database.","Intermediate","45 min"],["REST API","Design clean, versioned endpoints.","Intermediate","50 min"],["CRUD Operations","Create, read, update and delete end to end.","Intermediate","60 min"],["Authentication & Authorization","Login, roles and protected routes.","Advanced","70 min"],["Session Management","Keep user state across requests.","Intermediate","30 min"],["Exception Handling","Handle errors globally and safely.","Intermediate","35 min"],["Logging","Structured logs for diagnosing issues.","Intermediate","30 min"],["API Integration","Call third-party APIs with HttpClient.","Advanced","45 min"],["Postman Testing","Test and document your endpoints.","Beginner","25 min"],["Deployment","Publish to IIS, Azure or Docker.","Advanced","60 min"]];
+var L={2:{e:"Program.cs is the entry point of an ASP.NET Core app. It builds the host, registers services and defines how requests are handled.",w:"Every setting your app needs at startup lives in one place, which makes behaviour easy to read and change.",h:["WebApplication.CreateBuilder creates the builder with defaults for config and logging.","builder.Services registers the services your app needs.","builder.Build() creates the app; then you configure the pipeline and call app.Run()."],r:"Like a restaurant opening checklist: stock the kitchen (services), set up the line (middleware), then open the doors (Run).",f:"Program.cs",c:"var builder = WebApplication.CreateBuilder(args);\n\nbuilder.Services.AddControllers();\n\nvar app = builder.Build();\n\napp.UseHttpsRedirection();\napp.UseAuthorization();\napp.MapControllers();\n\napp.Run();",i:"Program.cs is where the host is built, services are registered into the DI container, and the middleware pipeline is configured. Since .NET 6 it uses the minimal hosting model with no separate Startup class.",m:["Registering services after builder.Build().","Placing middleware in the wrong order.","Forgetting MapControllers() so routes return 404."],p:"Add a /health endpoint with app.MapGet that returns the text Healthy."},
+3:{e:"Middleware are components that form a pipeline; each one can handle a request, pass it on, or short-circuit it.",w:"Cross-cutting concerns like logging, authentication and error handling stay out of your controllers.",h:["Each middleware receives the HttpContext and a next delegate.","Calling next() passes control to the following component.","The response travels back through the same components in reverse."],r:"A security checkpoint at an airport: every passenger passes through ID check, scanner and gate in a fixed order.",f:"Program.cs",c:"app.Use(async (context, next) =>\n{\n    // before the next middleware\n    Console.WriteLine(context.Request.Path);\n    await next();\n    // after the response is produced\n});\n\napp.MapGet(\"/\", () => \"Hello\");",i:"Middleware is a chain of request delegates. Order matters: for example, UseAuthentication must come before UseAuthorization.",m:["Wrong middleware order.","Forgetting to call next().","Writing to the response after it has started."],p:"Write middleware that logs the request method, path and time taken."},
+5:{e:"Dependency Injection supplies a class with the objects it needs instead of letting it create them itself.",w:"It gives loose coupling, easy testing and one central place to manage object lifetimes.",h:["Register a service with AddScoped, AddTransient or AddSingleton.","The framework creates it and injects it through the constructor.","The container disposes of it at the end of its lifetime."],r:"A hotel front desk: guests ask for a service and staff provide it without the guest knowing how it is made.",f:"ProductsController.cs",c:"builder.Services.AddScoped<IProductService, ProductService>();\n\npublic class ProductsController : ControllerBase\n{\n    private readonly IProductService _service;\n\n    public ProductsController(IProductService service)\n    {\n        _service = service;\n    }\n}",i:"DI is built into ASP.NET Core. Transient creates a new instance each time, Scoped one per request, and Singleton one for the app lifetime.",m:["Injecting a scoped service into a singleton.","Using new instead of DI.","Registering the class but not its interface."],p:"Create an IEmailService, register it as scoped and inject it into a controller."}};
+var done=[0,1,2,3,4,5,6,7,8,9],saved=[],recent=[],cur=0;
+try{var d=JSON.parse(localStorage.getItem("ds-done")||"null");if(d)done=d}catch(e){}
+function prog(){var n=done.length;$("#pp").textContent=Math.round(n/P.length*100);$("#pbar").style.width=n/P.length*100+"%";$("#sc").textContent=n;$("#sr").textContent=P.length-n;
+ $("#recent").innerHTML=recent.length?recent.map(function(i){return '<button class="chip" data-t="'+i+'" style="border:0">'+P[i][0]+'</button>'}).join(""):"Open a topic to see it here.";
+ $("#saved").innerHTML=saved.length?saved.map(function(i){return '<button class="chip" data-t="'+i+'" style="border:0">'+P[i][0]+'</button>'}).join(""):"Bookmark topics from a lesson page.";
+ renderRm()}
+function renderRm(){$("#rm").innerHTML=P.map(function(p,i){return '<div class="card'+(done.indexOf(i)>-1?' done':'')+'"><div class="num">'+String(i+1).padStart(2,"0")+'</div><h3 style="margin:0 0 4px;font-size:1.02rem">'+p[0]+'</h3><p style="margin:0;color:var(--mu);font-size:.9rem">'+p[1]+'</p><div class="meta"><span><span class="chip">'+p[2]+'</span><span style="color:var(--mu);font-size:.8rem">'+p[3]+'</span></span><button class="btn sm" data-t="'+i+'">'+(done.indexOf(i)>-1?'Review':'Start')+'</button></div></div>'}).join("")}
+var SB=[0,1,2,3,4,5,6,7,8,11,14,16,22];
+function openT(i){cur=i;recent=[i].concat(recent.filter(function(x){return x!==i})).slice(0,3);var p=P[i],l=L[i];
+ $("#home").style.display="none";$("#lesson").style.display="block";window.scrollTo(0,0);
+ $("#sb").innerHTML=SB.map(function(j){return '<button data-t="'+j+'" class="'+(j===i?'on':'')+'">'+P[j][0]+'</button>'}).join("");
+ var h='<span class="chip">'+p[2]+'</span><span class="chip">'+p[3]+'</span><h1>'+p[0]+'</h1><p>'+p[1]+'</p>';
+ if(l){h+='<h3 id="s1">Introduction</h3><p>'+l.e+'</p><h3>Why we use it</h3><p>'+l.w+'</p><h3>How it works</h3><ul>'+l.h.map(function(x){return '<li>'+x+'</li>'}).join("")+'</ul><h3 id="s2">Real-world example</h3><p>'+l.r+'</p><h3 id="s3">Code</h3>'+cb(l.f,"C#",l.c)+'<h3 id="s4">Important Points</h3><p><b>Common mistakes</b></p><ul>'+l.m.map(function(x){return '<li>'+x+'</li>'}).join("")+'</ul><h3 id="s5">Interview Questions</h3><div class="card"><p style="margin:0"><b>Explain it in an interview:</b> '+l.i+'</p></div><h3 id="s6">Practice</h3><div class="card"><p style="margin:0">'+l.p+'</p></div>'}
+ else h+='<div class="card" style="margin-top:20px"><b>Full lesson coming soon</b><p style="margin:6px 0 0">This topic will follow the same structure: explanation, why it matters, how it works, real-world example, code, interview answer, common mistakes and a practice task.</p></div>';
+ h+='<div class="row"><button class="btn sm" id="mk">'+(done.indexOf(i)>-1?'✓ Completed':'Mark complete')+'</button><button class="btn sm" id="bm">'+(saved.indexOf(i)>-1?'Saved ★':'Bookmark ☆')+'</button></div><div class="pn"><button class="btn" data-t="'+(i-1)+'"'+(i<1?' disabled style="opacity:.4"':'')+'>← Previous</button><button class="btn pri" data-t="'+(i+1)+'"'+(i>=P.length-1?' disabled style="opacity:.4"':'')+'>Next Topic →</button></div>';
+ $("#art").innerHTML=h;
+ $("#toc").innerHTML=l?[["Introduction","s1"],["Example","s2"],["Code","s3"],["Important Points","s4"],["Interview Questions","s5"],["Practice","s6"]].map(function(x){return '<button data-sc="'+x[1]+'">'+x[0]+'</button>'}).join(""):"";
+ prog()}
+function goHome(id){$("#lesson").style.display="none";$("#home").style.display="block";setTimeout(function(){var e=id==="top"?document.body:document.getElementById(id);if(e)e.scrollIntoView({behavior:"smooth"})},30)}
+
+var Q=[["ASP.NET Core","Beginner","What is middleware?","A component in the request pipeline that can process a request, call the next component, or short-circuit. Order matters."],["ASP.NET Core","Intermediate","Difference between AddScoped, AddTransient and AddSingleton?","Scoped: one instance per request. Transient: new instance every time. Singleton: one instance for the whole application."],["ASP.NET Core","Experienced","How do you handle exceptions globally?","Use exception-handling middleware (UseExceptionHandler) or an IExceptionHandler, log centrally and return consistent ProblemDetails responses."],["ASP.NET Core","Experienced","How would you secure a Web API in production?","JWT bearer auth, role/policy authorization, HTTPS, input validation, rate limiting, secrets outside source control and CORS limited to known origins."],["C#","Beginner","What is the difference between class and struct?","Classes are reference types on the heap; structs are value types, usually stack-allocated and copied on assignment."],["C#","Intermediate","What is async/await?","It lets a method yield while waiting for I/O so the thread can do other work, then resumes when the task completes."],["MVC","Beginner","Explain MVC.","Model holds data and rules, View renders the UI, Controller handles requests and coordinates the two."],["Web API","Intermediate","PUT vs PATCH?","PUT replaces the whole resource; PATCH changes only the supplied fields."],["ADO.NET","Intermediate","Why use parameterised queries?","They prevent SQL injection and let the database reuse execution plans."],["SQL Server","Experienced","Clustered vs non-clustered index?","A clustered index defines physical row order (one per table); non-clustered indexes are separate structures pointing back to rows."],["JavaScript","Beginner","What is a closure?","A function that remembers variables from the scope where it was created."],["HR","Beginner","Tell me about yourself.","Give a 60-second summary: current role, key skills, one achievement, and why you want this role."]];
+var cat="All",lv="All";
+function pills(el,arr,get,set){$(el).innerHTML=arr.map(function(a){return '<button class="'+(get()===a?'on':'')+'" data-v="'+a+'">'+a+'</button>'}).join("");$(el).onclick=function(e){var v=e.target.dataset.v;if(v){set(v);rq()}}}
+function rq(){pills("#cats",["All","ASP.NET Core","C#","MVC","Web API","ADO.NET","SQL Server","JavaScript","HR"],function(){return cat},function(v){cat=v});pills("#lvls",["All","Beginner","Intermediate","Experienced"],function(){return lv},function(v){lv=v});
+ var r=Q.filter(function(q){return(cat==="All"||q[0]===cat)&&(lv==="All"||q[1]===lv)});
+ $("#qas").innerHTML=r.length?r.map(function(q){return '<div class="card qa"><button><span class="chip">'+q[1]+'</span>'+q[2]+'</button><div class="a">'+q[3]+'</div></div>'}).join(""):'<p style="color:var(--mu)">No questions for this filter yet.</p>'}
+rq();
+$("#exp").onclick=function(){cat="ASP.NET Core";lv="Experienced";rq()};
+
+var X=[["Dependency Injection","Startup.cs","builder.Services.AddScoped<IProductService, ProductService>();"],["API CRUD (GET)","ProductsController.cs","[HttpGet(\"{id}\")]\npublic async Task<IActionResult> Get(int id)\n{\n    var item = await _service.GetAsync(id);\n    return item is null ? NotFound() : Ok(item);\n}"],["POST API","ProductsController.cs","[HttpPost]\npublic async Task<IActionResult> Create(Product model)\n{\n    var id = await _service.AddAsync(model);\n    return CreatedAtAction(nameof(Get), new { id }, model);\n}"],["ADO.NET Connection","ProductRepository.cs","using var con = new SqlConnection(_connString);\nawait con.OpenAsync();\nusing var cmd = new SqlCommand(\"SELECT * FROM Products\", con);\nusing var rd = await cmd.ExecuteReaderAsync();"],["Stored Procedure","ProductRepository.cs","using var cmd = new SqlCommand(\"usp_AddProduct\", con);\ncmd.CommandType = CommandType.StoredProcedure;\ncmd.Parameters.AddWithValue(\"@Name\", model.Name);\nawait cmd.ExecuteNonQueryAsync();"],["Session","Program.cs","builder.Services.AddSession();\napp.UseSession();\n\nHttpContext.Session.SetString(\"User\", name);"],["Exception Handling","Program.cs","app.UseExceptionHandler(\"/error\");\n\napp.Map(\"/error\", () => Results.Problem());"],["API Integration","WeatherClient.cs","var res = await _http.GetAsync(\"https://api.example.com/data\");\nres.EnsureSuccessStatusCode();\nvar json = await res.Content.ReadAsStringAsync();"]];
+function rx(){var q=$("#q").value.toLowerCase();var r=X.filter(function(x){return(x[0]+x[2]).toLowerCase().indexOf(q)>-1});
+ $("#ex").innerHTML=r.length?r.map(function(x){return '<div><b style="display:block;margin-bottom:6px">'+x[0]+'</b>'+cb(x[1],"C#",x[2])+'</div>'}).join(""):'<p style="color:var(--mu)">No examples match your search.</p>'}
+$("#q").oninput=rx;rx();
+
+var PJ=[["E-Commerce Application","ASP.NET Core MVC · SQL Server · Bootstrap","Intermediate","Catalogue, cart, checkout and order history."],["Employee Management System","MVC · ADO.NET · SQL Server","Beginner","Staff records with search, roles and reports."],["Product CRUD Web API","Web API · C# · Postman","Beginner","A clean REST API with validation and testing."],["Inventory Management System","MVC · Stored Procedures · JS","Intermediate","Stock in/out tracking with low-stock alerts."],["Authentication System","ASP.NET Core · JWT · Identity","Advanced","Register, login, roles and protected routes."],["Financial Web Application","MVC · Web API · SQL Server","Advanced","Loans, EMIs, customers and dashboards."]];
+$("#proj").innerHTML=PJ.map(function(p,i){return '<div class="card"><div style="height:110px;border-radius:12px;margin-bottom:14px;background:linear-gradient(135deg,var(--soft),transparent),repeating-linear-gradient(45deg,var(--ln) 0 1px,transparent 1px 14px);display:grid;place-items:center" class="grad"><b style="font-size:2rem">0'+(i+1)+'</b></div><h3>'+p[0]+'</h3><p style="margin-bottom:8px">'+p[3]+'</p><p style="font-size:.8rem;margin-bottom:10px">'+p[1]+'</p><span class="chip">'+p[2]+'</span><div class="row" style="margin-top:12px"><button class="btn pri sm">View Project</button><button class="btn sm">Source Code</button></div></div>'}).join("");
+var W=[["Practical Learning","Learn concepts through real development examples."],["Real Projects","Build projects that can be added to a developer portfolio."],["Interview Preparation","Prepare for practical ASP.NET/.NET interviews."],["Step-by-Step Guidance","Understand not only the code but why each file and line is used."]];
+$("#why").innerHTML=W.map(function(w,i){return '<div class="card"><div class="ti">0'+(i+1)+'</div><h3>'+w[0]+'</h3><p style="margin:0">'+w[1]+'</p></div>'}).join("");
+
+document.addEventListener("click",function(e){
+ var t=e.target.closest("[data-t]");if(t&&!t.disabled){e.preventDefault();openT(+t.dataset.t);return}
+ var g=e.target.closest("[data-go]");if(g){e.preventDefault();$("#links").classList.remove("open");goHome(g.dataset.go);return}
+ var sc=e.target.closest("[data-sc]");if(sc){document.getElementById(sc.dataset.sc).scrollIntoView({behavior:"smooth"});return}
+ var c=e.target.closest(".copy");if(c){var tx=decodeURIComponent(c.dataset.c);var ok=function(){c.textContent="Copied!";setTimeout(function(){c.textContent="Copy Code"},1400)};
+  try{navigator.clipboard.writeText(tx).then(ok,fb)}catch(x){fb()}function fb(){var a=document.createElement("textarea");a.value=tx;document.body.appendChild(a);a.select();try{document.execCommand("copy");ok()}catch(x){}document.body.removeChild(a)}return}
+ var q=e.target.closest(".qa button");if(q){q.parentNode.classList.toggle("open");return}
+ if(e.target.closest("#mk")){var k=done.indexOf(cur);if(k>-1)done.splice(k,1);else done.push(cur);try{localStorage.setItem("ds-done",JSON.stringify(done))}catch(x){}openT(cur);return}
+ if(e.target.closest("#bm")){var b=saved.indexOf(cur);if(b>-1)saved.splice(b,1);else saved.push(cur);openT(cur);return}
+ if(e.target.closest("#back")){goHome("learn");return}
+ if(e.target.closest("#cont")){var n=0;while(done.indexOf(n)>-1&&n<P.length-1)n++;openT(n);return}
+ if(e.target.closest("#menu")){$("#links").classList.toggle("open");return}
+ if(e.target.closest("#srch")){goHome("examples");setTimeout(function(){$("#q").focus()},500);return}
+ if(e.target.closest("#theme")){var r=document.documentElement,dk=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;r.dataset.theme=dk?"light":"dark"}
+});
+prog();
+</script>
+</body>
+</html>
