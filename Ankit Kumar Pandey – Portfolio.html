@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ankit Kumar Pandey – ASP.NET Web Forms Developer</title>
+<style>
+:root{--bg:#f6f5ff;--bg2:#ecebff;--card:#fff;--text:#1a1738;--muted:#5d5a80;--a:#6366f1;--b:#06b6d4;--line:#e0def6;--term:#16143a;--sh:0 10px 34px rgba(99,102,241,.14);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0e24;--bg2:#171634;--card:#1a1940;--text:#efeeff;--muted:#a9a7d0;--a:#8b8dff;--b:#22d3ee;--line:#2e2c5c;--term:#0a0919;--sh:0 10px 34px rgba(0,0,0,.4);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f0e24;--bg2:#171634;--card:#1a1940;--text:#efeeff;--muted:#a9a7d0;--a:#8b8dff;--b:#22d3ee;--line:#2e2c5c;--term:#0a0919;--sh:0 10px 34px rgba(0,0,0,.4);color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 84px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.65;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.35;z-index:-1;pointer-events:none}
+nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:20;margin:12px auto 0;width:max-content;max-width:calc(100% - 20px);display:flex;align-items:center;gap:2px;padding:6px;border-radius:999px;background:color-mix(in srgb,var(--card) 85%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line);box-shadow:var(--sh);overflow-x:auto}
+nav a,nav button{padding:8px 13px;border-radius:999px;font-size:14px;color:var(--muted);white-space:nowrap;background:none;border:0;cursor:pointer;font-family:inherit}
+nav a:hover,nav button:hover{background:var(--bg2);color:var(--a)}
+section{max-width:1080px;margin:0 auto;padding:84px 20px 0;position:relative}
+.eyebrow{color:var(--a);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 8px}
+h2{font-size:clamp(28px,4vw,38px);line-height:1.15;margin:0 0 12px}
+.sub{color:var(--muted);margin:0 0 34px;max-width:620px}
+.g{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;padding-top:70px}
+.pill{display:inline-flex;gap:8px;align-items:center;padding:6px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:13px;color:var(--muted)}
+.dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.2)}
+h1{font-size:clamp(38px,7vw,64px);line-height:1.05;margin:16px 0 14px;letter-spacing:-.02em}
+.lead{font-size:19px;color:var(--muted);max-width:520px;margin:0}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{padding:13px 24px;border-radius:999px;font-weight:600;border:1px solid var(--line);background:var(--card);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.p{background:linear-gradient(90deg,var(--a),var(--b));color:#fff;border:0;box-shadow:0 8px 24px rgba(99,102,241,.4)}
+.term{background:var(--term);color:#d9d8ff;border-radius:18px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;box-shadow:var(--sh);padding-bottom:18px;transform:rotate(1.5deg)}
+.bar{display:flex;gap:6px;padding:13px 15px}.bar i{width:11px;height:11px;border-radius:50%;background:#ff5f57}.bar i:nth-child(2){background:#febc2e}.bar i:nth-child(3){background:#28c840}
+.term p{margin:2px 18px;white-space:pre-wrap}.k{color:#a5a8ff}.s{color:#7ee0b0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;text-align:center;box-shadow:var(--sh)}
+.stat b{display:block;font-size:34px;line-height:1.1}.stat span{font-size:13px;color:var(--muted)}
+.strip{overflow:hidden;margin-top:56px;border-block:1px solid var(--line);padding:16px 0;background:var(--bg2)}
+.run{display:flex;gap:40px;width:max-content;animation:m 28s linear infinite;font-weight:700;color:var(--muted)}
+@keyframes m{to{transform:translateX(-50%)}}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:var(--sh);transition:transform .25s,border-color .25s}
+.card:hover{transform:translateY(-4px);border-color:var(--a)}
+.card h3{margin:0 0 8px;font-size:19px}.card p{margin:0 0 12px;color:var(--muted);font-size:15px}
+.ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:22px;margin-bottom:14px;background:linear-gradient(135deg,color-mix(in srgb,var(--a) 22%,transparent),color-mix(in srgb,var(--b) 22%,transparent))}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tags span{font-size:12.5px;padding:4px 11px;border-radius:999px;background:var(--bg2);color:var(--a);border:1px solid var(--line)}
+.about{display:grid;grid-template-columns:1.3fr 1fr;gap:18px}
+.ck{list-style:none;padding:0;margin:0}.ck li{padding:9px 0 9px 30px;position:relative;border-bottom:1px solid var(--line);font-size:15px}
+.ck li:before{content:"✓";position:absolute;left:0;color:#fff;background:linear-gradient(135deg,var(--a),var(--b));width:20px;height:20px;border-radius:50%;font-size:12px;display:grid;place-items:center;top:12px}
+.sk{margin-bottom:15px}.sk div{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px}
+.tr{height:9px;border-radius:9px;background:var(--line);overflow:hidden}.fl{height:100%;width:0;border-radius:9px;background:linear-gradient(90deg,var(--a),var(--b));transition:width 1.3s cubic-bezier(.2,.8,.2,1)}
+.proj{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:0;overflow:hidden;margin-bottom:18px}
+.proj .vis{min-height:220px;display:grid;place-items:center;font-size:56px;color:#fff;background:linear-gradient(135deg,var(--a),var(--b))}
+.proj .vis.v2{background:linear-gradient(135deg,#0ea5e9,#6366f1)}
+.proj .in{padding:28px}.lk{display:inline-block;margin-top:8px;font-weight:700;color:var(--a)}
+.steps{counter-reset:s}.steps .card:before{counter-increment:s;content:"0" counter(s);font-size:34px;font-weight:800;display:block;margin-bottom:6px;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.tl{border-left:2px solid var(--line);margin-left:8px;padding-left:26px}
+.tl .it{position:relative;margin-bottom:30px}.tl .it:before{content:"";position:absolute;left:-35px;top:6px;width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--b));box-shadow:0 0 0 5px var(--bg)}
+.tl h3{margin:0}.tl small{color:var(--muted)}.tl ul{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:15px}
+.cta{margin:90px auto 0;max-width:1040px;padding:50px 26px;text-align:center;border-radius:28px;color:#fff;background:linear-gradient(135deg,var(--a),var(--b));box-shadow:0 20px 50px rgba(99,102,241,.4)}
+.cta h2{margin:0 0 10px}.cta p{margin:0 0 22px;opacity:.9}.cta .btn{background:#fff;color:#4338ca;border:0}
+.row{display:flex;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}.row b{min-width:72px;color:var(--a)}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:56px 20px 36px}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}.rv.in{opacity:1;transform:none}
+@media (max-width:780px){.hero,.about,.proj{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.term{transform:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.run{animation:none}.rv{opacity:1;transform:none;transition:none}.fl{transition:none}}
+</style>
+</head>
+<body>
+<div class="blob" style="width:420px;height:420px;background:var(--a);top:-120px;left:-120px"></div>
+<div class="blob" style="width:380px;height:380px;background:var(--b);top:300px;right:-140px"></div>
+<nav><a href="#top">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#contact">Contact</a><button id="th" aria-label="Toggle theme">◐</button></nav>
+
+<section class="hero" id="top">
+  <div>
+    <span class="pill"><i class="dot"></i> Open to ASP.NET Web Forms roles · 15-day notice</span>
+    <h1>Hi, I’m <span class="g">Ankit Kumar Pandey</span></h1>
+    <p class="lead">ASP.NET Web Forms developer who turns business ideas into reliable, good-looking websites, from finance portals to e-commerce stores.</p>
+    <div class="btns"><a class="btn p" href="#projects">See my work</a><a class="btn" href="#contact">Let’s talk</a></div>
+  </div>
+  <div class="term" aria-hidden="true">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <p><span class="k">var</span> ankit = <span class="k">new</span> Developer {</p>
+    <p>  Role     = <span class="s">"ASP.NET Web Forms"</span>,</p>
+    <p>  Stack    = <span class="s">"C#, SQL Server, ADO.NET"</span>,</p>
+    <p>  Frontend = <span class="s">"HTML, CSS, Bootstrap"</span>,</p>
+    <p>  APIs     = <span class="s">"REST, Postman"</span>,</p>
+    <p>  Status   = <span class="s">"Available"</span></p>
+    <p>};</p>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="stats rv">
+    <div class="stat"><b class="g">4+</b><span>Years of experience</span></div>
+    <div class="stat"><b class="g">2</b><span>Live platforms</span></div>
+    <div class="stat"><b class="g">6</b><span>Financial product areas</span></div>
+    <div class="stat"><b class="g">15</b><span>Days notice period</span></div>
+  </div>
+</section>
+
+<div class="strip"><div class="run"><span>ASP.NET Web Forms</span><span>C#</span><span>SQL Server</span><span>ADO.NET</span><span>REST APIs</span><span>Postman</span><span>HTML5</span><span>CSS3</span><span>Bootstrap</span><span>ASP.NET Web Forms</span><span>C#</span><span>SQL Server</span><span>ADO.NET</span><span>REST APIs</span><span>Postman</span><span>HTML5</span><span>CSS3</span><span>Bootstrap</span></div></div>
+
+<section id="about">
+  <p class="eyebrow">About me</p><h2>Design sense, <span class="g">developer discipline</span></h2>
+  <p class="sub">Senior Web Designer &amp; Developer at RR Finance Pvt. Ltd. since January 2022.</p>
+  <div class="about rv">
+    <div class="card"><p style="color:var(--text);font-size:16px">I build financial-domain websites, lead-generation landing pages and e-commerce platforms with ASP.NET Web Forms, C# and SQL Server. I care about clean code-behind, responsive layouts.</p><p style="margin:0">Alongside full-time work I’m pursuing an MCA at GLA University.</p></div>
+    <div class="card"><ul class="ck"><li>Production Web Forms since 2022</li><li>Data-driven pages with stored procedures</li><li>REST API integration tested in Postman</li><li>Responsive page design with Bootstrap</li><li>Lead capture backed by SQL Server</li></ul></div>
+  </div>
+</section>
+
+<section id="services">
+  <p class="eyebrow">What I do</p><h2>Services I <span class="g">deliver</span></h2>
+  <p class="sub">End-to-end web work, from layout to database.</p>
+  <div class="grid rv">
+    <div class="card"><div class="ic">🧩</div><h3>Web Forms Applications</h3><p>Dynamic sites with Master Pages, User Controls, Repeater and GridView bound to SQL Server.</p></div>
+    <div class="card"><div class="ic">🛒</div><h3>E-commerce Platforms</h3><p>Catalogs, cart, checkout, PIN-based COD and order flows with duplicate-order protection.</p></div>
+    <div class="card"><div class="ic">📈</div><h3>Lead-Gen Landing Pages</h3><p>High-converting pages with validated forms, database storage.</p></div>
+    <div class="card"><div class="ic">📱</div><h3>Responsive UI</h3><p>Bootstrap and CSS3 layouts that look sharp on every screen.</p></div>
+    <div class="card"><div class="ic">🔌</div><h3>API Integration</h3><p>Consume and test REST APIs with Postman and wire them into your pages.</p></div>
+      </div>
+</section>
+
+<section id="skills">
+  <p class="eyebrow">Skills</p><h2>My <span class="g">toolkit</span></h2>
+  <p class="sub">What I use daily, and what I’m learning next.</p>
+  <div class="grid rv">
+    <div class="card" id="bars">
+      <div class="sk"><div><span>ASP.NET Web Forms</span><span>90%</span></div><div class="tr"><div class="fl" data-w="90"></div></div></div>
+      <div class="sk"><div><span>C# &amp; ADO.NET</span><span>85%</span></div><div class="tr"><div class="fl" data-w="85"></div></div></div>
+      <div class="sk"><div><span>SQL Server</span><span>85%</span></div><div class="tr"><div class="fl" data-w="85"></div></div></div>
+      <div class="sk"><div><span>HTML, CSS, Bootstrap</span><span>90%</span></div><div class="tr"><div class="fl" data-w="90"></div></div></div>
+      <div class="sk"><div><span>API integration (Postman)</span><span>80%</span></div><div class="tr"><div class="fl" data-w="80"></div></div></div>
+      <div class="sk" style="margin:0"><div><span>Page design &amp; layout</span><span>85%</span></div><div class="tr"><div class="fl" data-w="85"></div></div></div>
+    </div>
+    <div class="card"><h3>Also work with</h3><div class="tags"><span>REST APIs</span><span>Postman</span><span>Visual Studio</span><span>SSMS</span><span>Master Pages</span><span>User Controls</span><span>ViewState</span><span>Validation Controls</span><span>Stored Procedures</span><span>E-commerce listing</span></div></div>
+  </div>
+</section>
+
+<section id="projects">
+  <p class="eyebrow">Projects</p><h2>Featured <span class="g">work</span></h2>
+  <p class="sub">Live products built with ASP.NET Web Forms.</p>
+  <div class="card proj rv"><div class="vis">🛍️</div><div class="in"><h3>23U Forever</h3><p>Skincare e-commerce platform with a database-driven catalog, cart, checkout and PIN-code-based COD eligibility. Login and address open in a popup, so buyers never leave the page.</p><div class="tags"><span>Web Forms</span><span>C#</span><span>SQL Server</span><span>Bootstrap</span></div><a class="lk" href="https://23uforever.com" target="_blank" rel="noopener">Visit 23uforever.com →</a></div></div>
+  <div class="card proj rv"><div class="vis v2">🏦</div><div class="in"><h3>RR Finance</h3><p>Corporate finance website serving live customers, built on reusable Master Pages and User Controls for consistent layout and faster delivery.</p><div class="tags"><span>Web Forms</span><span>C#</span><span>SQL Server</span><span>Master Pages</span></div><a class="lk" href="https://rrfinance.com" target="_blank" rel="noopener">Visit rrfinance.com →</a></div></div>
+  <div class="card rv"><h3>Financial landing pages</h3><p>Lead-generation pages for Pre-IPO Unlisted Shares, National Pension System, PMS Fund, Capital Gain Bonds, IPOs and Fixed Deposits, with database-backed lead capture.</p><div class="tags"><span>Bootstrap</span><span>CSS3</span><span>Lead forms</span><span>SQL Server</span></div></div>
+</section>
+
+<section id="process">
+  <p class="eyebrow">Process</p><h2>How I <span class="g">work</span></h2>
+  <p class="sub">A simple flow that keeps projects on track.</p>
+  <div class="grid steps rv">
+    <div class="card"><h3>Understand</h3><p>Clarify goals, users and the data the site must handle.</p></div>
+    <div class="card"><h3>Design</h3><p>Plan the layout and database, reusing Master Pages and controls.</p></div>
+    <div class="card"><h3>Build</h3><p>Develop clean C# code-behind, stored procedures and responsive UI.</p></div>
+    <div class="card"><h3>Launch &amp; support</h3><p>Test the pages, then fix bugs and support after launch.</p></div>
+  </div>
+</section>
+
+<section id="experience">
+  <p class="eyebrow">Journey</p><h2>Experience &amp; <span class="g">education</span></h2>
+  <p class="sub">&nbsp;</p>
+  <div class="tl rv">
+    <div class="it"><h3>Senior Web Designer &amp; Developer — RR Finance Pvt. Ltd.</h3><small>January 2022 – Present</small>
+      <ul><li>Build and maintain production websites in ASP.NET Web Forms, C# and SQL Server.</li><li>Develop dynamic pages with Repeater/GridView, ADO.NET and stored procedures.</li><li>Design responsive, cross-browser pages with HTML5, CSS3 and Bootstrap.</li><li>Integrate and test REST APIs with Postman.</li></ul></div>
+    <div class="it"><h3>MCA — GLA University</h3><small>2024 – 2026 (pursuing)</small></div>
+    <div class="it" style="margin:0"><h3>BCA — Maulana Mazharul Haque Arabic &amp; Persian University</h3><small>2019</small></div>
+  </div>
+</section>
+
+<div class="cta rv"><h2>Have a project or a role in mind?</h2><p>I’m available on a 15-day notice. Let’s build something solid.</p><a class="btn" href="mailto:ankitkp1408@gmail.com">Email me</a></div>
+
+<section id="contact">
+  <p class="eyebrow">Contact</p><h2>Get in <span class="g">touch</span></h2>
+  <div class="card rv" style="margin-top:20px"><a class="row" href="mailto:ankitkp1408@gmail.com"><b>Email</b><span>ankitkp1408@gmail.com</span></a><a class="row" href="tel:+918595969146" style="border:0"><b>Phone</b><span>+91 85959 69146</span></a></div>
+</section>
+<footer>© Ankit Kumar Pandey · Delhi, India</footer>
+
+<script>
+(function(){
+  var R=document.documentElement,fl=document.querySelectorAll('.fl');
+  function go(){fl.forEach(function(f){f.style.width=f.getAttribute('data-w')+'%'})}
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');if(e.target.querySelector('#bars')||e.target.id==='bars')go();io.unobserve(e.target)}})},{threshold:.15});
+    document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+  }else{document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in')});go()}
+  document.getElementById('th').onclick=function(){
+    var d=R.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+    R.setAttribute('data-theme',d==='dark'?'light':'dark');
+  };
+})();
+</script>
+</body>
+</html>
